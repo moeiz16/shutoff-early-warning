@@ -1,0 +1,10 @@
+method,field,n,agree,accuracy,ci_low,ci_high,cohen_kappa
+keyword search (baseline),asset,30,30,1.0,0.8864829086095221,1.0,1.0
+keyword search (baseline),priority,30,12,0.4,0.24590394326083403,0.5767994750172616,0.33333333333333337
+keyword search (baseline),cause,30,11,0.36666666666666664,0.21873702204017678,0.5448675356639506,0.24302788844621515
+sentence roles + phrase lists,asset,30,30,1.0,0.8864829086095221,1.0,1.0
+sentence roles + phrase lists,priority,30,30,1.0,0.8864829086095221,1.0,1.0
+sentence roles + phrase lists,cause,30,30,1.0,0.8864829086095221,1.0,1.0
+"same, lists from the 90 unlabelled only",asset,30,30,1.0,0.8864829086095221,1.0,1.0
+"same, lists from the 90 unlabelled only",priority,30,30,1.0,0.8864829086095221,1.0,1.0
+"same, lists from the 90 unlabelled only",cause,30,30,1.0,0.8864829086095221,1.0,1.0
