@@ -1,0 +1,517 @@
+{
+  "split": {
+    "development": 20000,
+    "test": 5000,
+    "dev_positives": 1857,
+    "test_positives": 464
+  },
+  "profile": {
+    "customers": 25000,
+    "billing_rows": 300000,
+    "shutoff_rate_all": 0.0928,
+    "hardship_share": 0.136,
+    "income_missing_share": 0.0886,
+    "income_missing_by_hardship_plan": {
+      "0": 0.0684,
+      "1": 0.2171
+    },
+    "income_missing_by_home": {
+      "apartment": 0.0823,
+      "detached": 0.0812,
+      "manufactured": 0.141,
+      "townhouse": 0.0822
+    },
+    "dev_shutoff_rate_by_notices": {
+      "0": 0.0,
+      "1": 0.4597,
+      "2": 1.0,
+      "3": 1.0
+    },
+    "dev_shutoff_rate_when_status_shut_off": 1.0,
+    "dev_shut_off_but_connected_at_pull": 224,
+    "tariffs": {
+      "recode_cycle": 9,
+      "share_of_codes_changing_at_recode": 1.0,
+      "care_customers": 3399,
+      "care_is_hardship_plan": true,
+      "care_all_year": true,
+      "std_flex_same_as_last_cycle": 0.5442,
+      "same_if_drawn_at_random": 0.5448
+    },
+    "payments": {
+      "share_of_bills_late": 0.2864,
+      "days_overdue_max": 90,
+      "bills_at_max": 1154,
+      "bills_at_max_minus_1": 57,
+      "on_time_bills_paid_in_full": 1.0,
+      "late_bills_mean_share_paid": 0.7504,
+      "nothing_paid_but_overdue": 133,
+      "overpaid_bills": 0,
+      "cutoff_cycle_bills_paid_late": 7140,
+      "earlier_bills_paid_after_cutoff": {
+        "10": 335,
+        "11": 1947
+      }
+    },
+    "tenure": {
+      "customers_joined_during_year": 868,
+      "bills_dated_before_sign_up": 3960,
+      "late_share_before_sign_up": 0.3788,
+      "late_share_after_sign_up": 0.3611,
+      "late_share_all_customers": 0.2864
+    },
+    "dev_shutoff_rate_income_missing": 0.1309,
+    "dev_shutoff_rate_income_present": 0.0892,
+    "share_bottom_two_tiers_or_missing_by_hardship_plan": {
+      "0": 0.3173,
+      "1": 0.7573
+    }
+  },
+  "features": [
+    "hardship_plan",
+    "occupants",
+    "log_tenure",
+    "ebill",
+    "income_missing",
+    "income_tier_1",
+    "income_tier_2",
+    "income_tier_4",
+    "income_tier_5",
+    "home_apartment",
+    "home_townhouse",
+    "home_manufactured",
+    "district_harbour",
+    "district_riverside",
+    "district_uplands",
+    "district_eastgate",
+    "district_airport",
+    "overdue_share",
+    "avg_days_overdue",
+    "unpaid_share",
+    "avg_amount_due",
+    "channel_share_app",
+    "channel_share_post",
+    "channel_share_counter"
+  ],
+  "model_comparison_dev": {
+    "Logistic regression": {
+      "auc": 0.846967,
+      "auprc": 0.412911,
+      "brier": 0.066916,
+      "log_loss": 0.232374,
+      "auc_minus_chosen": null,
+      "auc_minus_chosen_lo": null,
+      "auc_minus_chosen_hi": null
+    },
+    "Logistic regression + recent-cycle and extreme-value features": {
+      "auc": 0.846912,
+      "auprc": 0.41197,
+      "brier": 0.066997,
+      "log_loss": 0.232547,
+      "auc_minus_chosen": -5.5e-05,
+      "auc_minus_chosen_lo": -0.000661,
+      "auc_minus_chosen_hi": 0.000526
+    },
+    "Gradient boosting (extended features)": {
+      "auc": 0.83793,
+      "auprc": 0.389396,
+      "brier": 0.068045,
+      "log_loss": 0.236845,
+      "auc_minus_chosen": -0.009037,
+      "auc_minus_chosen_lo": -0.011852,
+      "auc_minus_chosen_hi": -0.006152
+    },
+    "Logistic regression on payments as recorded (not point-in-time)": {
+      "auc": 0.849216,
+      "auprc": 0.41851,
+      "brier": 0.066528,
+      "log_loss": 0.231033,
+      "auc_minus_chosen": 0.002248,
+      "auc_minus_chosen_lo": 0.001121,
+      "auc_minus_chosen_hi": 0.003465
+    },
+    "Rule of thumb: number of late bills": {
+      "auc": 0.83543,
+      "auprc": 0.35816,
+      "brier": null,
+      "log_loss": null,
+      "auc_minus_chosen": -0.011537,
+      "auc_minus_chosen_lo": -0.015085,
+      "auc_minus_chosen_hi": -0.008157
+    }
+  },
+  "chosen_model_fold_auc": [
+    0.835684,
+    0.8543,
+    0.850707,
+    0.838175,
+    0.857098
+  ],
+  "dev_oof": {
+    "n": 20000,
+    "positives": 1857,
+    "auc": 0.846967,
+    "auprc": 0.412911,
+    "brier": 0.066916,
+    "brier_of_base_rate": 0.084229,
+    "log_loss": 0.232374,
+    "observed_rate": 0.09285,
+    "mean_predicted": 0.092762,
+    "calibration_slope": 0.988709
+  },
+  "test": {
+    "n": 5000,
+    "positives": 464,
+    "auc": 0.821991,
+    "auprc": 0.377096,
+    "brier": 0.070121,
+    "brier_of_base_rate": 0.084188,
+    "log_loss": 0.245298,
+    "observed_rate": 0.0928,
+    "mean_predicted": 0.094013,
+    "calibration_slope": 0.881055,
+    "ci": {
+      "auc": {
+        "value": 0.821991,
+        "ci_low": 0.803123,
+        "ci_high": 0.84129
+      },
+      "auprc": {
+        "value": 0.377096,
+        "ci_low": 0.332059,
+        "ci_high": 0.424941
+      },
+      "brier": {
+        "value": 0.070121,
+        "ci_low": 0.065059,
+        "ci_high": 0.075595
+      }
+    }
+  },
+  "threshold": {
+    "break_even_threshold": 0.08,
+    "dev_optimal_threshold": 0.0875,
+    "dev_cost_per_customer_at_optimum": 22.135,
+    "dev_cost_per_customer_at_break_even": 22.196,
+    "dev_flat_band_2pct": [
+      0.055,
+      0.1075
+    ],
+    "rule_of_thumb_late_bills": 5,
+    "test_saving_per_customer_vs_rule": {
+      "value": 0.924,
+      "ci_low": -0.1841,
+      "ci_high": 2.136
+    },
+    "test_policies": {
+      "Call nobody": {
+        "n": 5000,
+        "called": 0,
+        "called_share": 0.0,
+        "true_positives": 0,
+        "recall": 0.0,
+        "precision": null,
+        "false_positive_rate": 0.0,
+        "cost_total": 232000.0,
+        "cost_per_customer": 46.4,
+        "projected_cost_all_customers": 1160000.0
+      },
+      "Call everyone": {
+        "n": 5000,
+        "called": 5000,
+        "called_share": 1.0,
+        "true_positives": 464,
+        "recall": 1.0,
+        "precision": 0.0928,
+        "false_positive_rate": 1.0,
+        "cost_total": 200000.0,
+        "cost_per_customer": 40.0,
+        "projected_cost_all_customers": 1000000.0
+      },
+      "Rule of thumb: 5+ late bills": {
+        "n": 5000,
+        "called": 1373,
+        "called_share": 0.2746,
+        "true_positives": 321,
+        "recall": 0.69181,
+        "precision": 0.233795,
+        "false_positive_rate": 0.231922,
+        "cost_total": 126420.0,
+        "cost_per_customer": 25.284,
+        "projected_cost_all_customers": 632100.0
+      },
+      "Model, threshold 0.0800 (recommended)": {
+        "n": 5000,
+        "called": 1520,
+        "called_share": 0.304,
+        "true_positives": 342,
+        "recall": 0.737069,
+        "precision": 0.225,
+        "false_positive_rate": 0.2597,
+        "cost_total": 121800.0,
+        "cost_per_customer": 24.36,
+        "projected_cost_all_customers": 609000.0
+      },
+      "Model, threshold 0.0875 (development optimum)": {
+        "n": 5000,
+        "called": 1427,
+        "called_share": 0.2854,
+        "true_positives": 331,
+        "recall": 0.713362,
+        "precision": 0.231955,
+        "false_positive_rate": 0.241623,
+        "cost_total": 123580.0,
+        "cost_per_customer": 24.716,
+        "projected_cost_all_customers": 617900.0
+      }
+    },
+    "test_recommended": {
+      "n": 5000,
+      "called": 1520,
+      "called_share": 0.304,
+      "true_positives": 342,
+      "recall": 0.737069,
+      "precision": 0.225,
+      "false_positive_rate": 0.2597,
+      "cost_total": 121800.0,
+      "cost_per_customer": 24.36,
+      "model_expected_cost_per_customer": 21.965402,
+      "ci": {
+        "cost_per_customer": {
+          "value": 24.36,
+          "ci_low": 22.2799,
+          "ci_high": 26.5284
+        },
+        "recall": {
+          "value": 0.737069,
+          "ci_low": 0.698334,
+          "ci_high": 0.776812
+        },
+        "precision": {
+          "value": 0.225,
+          "ci_low": 0.204888,
+          "ci_high": 0.247732
+        },
+        "called_share": {
+          "value": 0.304,
+          "ci_low": 0.291,
+          "ci_high": 0.317
+        }
+      }
+    },
+    "effectiveness": [
+      {
+        "effectiveness": 1.0,
+        "threshold": 0.08,
+        "called_share": 0.304,
+        "recall": 0.737069,
+        "precision": 0.225,
+        "cost_per_customer": 24.36,
+        "call_nobody_cost_per_customer": 46.4,
+        "saving_vs_call_nobody": 0.475
+      },
+      {
+        "effectiveness": 0.75,
+        "threshold": 0.106667,
+        "called_share": 0.2498,
+        "recall": 0.665948,
+        "precision": 0.247398,
+        "cost_per_customer": 21.617,
+        "call_nobody_cost_per_customer": 34.8,
+        "saving_vs_call_nobody": 0.378822
+      },
+      {
+        "effectiveness": 0.5,
+        "threshold": 0.16,
+        "called_share": 0.173,
+        "recall": 0.571121,
+        "precision": 0.306358,
+        "cost_per_customer": 16.87,
+        "call_nobody_cost_per_customer": 23.2,
+        "saving_vs_call_nobody": 0.272845
+      },
+      {
+        "effectiveness": 0.25,
+        "threshold": 0.32,
+        "called_share": 0.0756,
+        "recall": 0.353448,
+        "precision": 0.433862,
+        "cost_per_customer": 10.524,
+        "call_nobody_cost_per_customer": 11.6,
+        "saving_vs_call_nobody": 0.092759
+      }
+    ],
+    "capacity": [
+      {
+        "call_top_share": 0.05,
+        "calls": 250,
+        "recall": 0.267241,
+        "precision": 0.496,
+        "lowest_score_called": 0.407503,
+        "cost_per_customer": 36.0
+      },
+      {
+        "call_top_share": 0.1,
+        "calls": 500,
+        "recall": 0.424569,
+        "precision": 0.394,
+        "lowest_score_called": 0.27164,
+        "cost_per_customer": 30.7
+      },
+      {
+        "call_top_share": 0.2,
+        "calls": 1000,
+        "recall": 0.614224,
+        "precision": 0.285,
+        "lowest_score_called": 0.13669,
+        "cost_per_customer": 25.9
+      },
+      {
+        "call_top_share": 0.304,
+        "calls": 1520,
+        "recall": 0.737069,
+        "precision": 0.225,
+        "lowest_score_called": 0.080033,
+        "cost_per_customer": 24.36
+      }
+    ]
+  },
+  "subgroups": {
+    "table": [
+      {
+        "group": "not on plan",
+        "n": 4320,
+        "positives": 351,
+        "observed_rate": 0.08125,
+        "mean_predicted": 0.081956,
+        "called_share": 0.265741,
+        "auc": 0.8161,
+        "auc_lo": 0.792425,
+        "auc_hi": 0.838852,
+        "auprc": 0.354351,
+        "auprc_lo": 0.301753,
+        "auprc_hi": 0.408921,
+        "brier": 0.063024,
+        "brier_lo": 0.057424,
+        "brier_hi": 0.068702,
+        "recall": 0.68661,
+        "recall_lo": 0.636871,
+        "recall_hi": 0.733736,
+        "precision": 0.20993,
+        "precision_lo": 0.186047,
+        "precision_hi": 0.234028,
+        "cost_per_customer": 23.361111,
+        "cost_per_customer_lo": 21.110417,
+        "cost_per_customer_hi": 25.652894,
+        "sample": "test"
+      },
+      {
+        "group": "on hardship plan",
+        "n": 680,
+        "positives": 113,
+        "observed_rate": 0.166176,
+        "mean_predicted": 0.170614,
+        "called_share": 0.547059,
+        "auc": 0.80069,
+        "auc_lo": 0.759922,
+        "auc_hi": 0.839475,
+        "auprc": 0.445551,
+        "auprc_lo": 0.361771,
+        "auprc_hi": 0.541943,
+        "brier": 0.11521,
+        "brier_lo": 0.099132,
+        "brier_hi": 0.131582,
+        "recall": 0.893805,
+        "recall_lo": 0.833333,
+        "recall_hi": 0.944893,
+        "precision": 0.271505,
+        "precision_lo": 0.226414,
+        "precision_hi": 0.315225,
+        "cost_per_customer": 30.705882,
+        "cost_per_customer_lo": 26.175735,
+        "cost_per_customer_hi": 36.089706,
+        "sample": "test"
+      },
+      {
+        "group": "not on plan",
+        "n": 17281,
+        "positives": 1405,
+        "observed_rate": 0.081303,
+        "mean_predicted": 0.081209,
+        "called_share": 0.263353,
+        "auc": 0.845796,
+        "auc_lo": 0.834961,
+        "auc_hi": 0.855756,
+        "auprc": 0.396485,
+        "auprc_lo": 0.369886,
+        "auprc_hi": 0.426179,
+        "brier": 0.059872,
+        "brier_lo": 0.057118,
+        "brier_hi": 0.062705,
+        "recall": 0.745907,
+        "recall_lo": 0.721344,
+        "recall_hi": 0.768513,
+        "precision": 0.230279,
+        "precision_lo": 0.21788,
+        "precision_hi": 0.242207,
+        "cost_per_customer": 20.863376,
+        "cost_per_customer_lo": 19.815549,
+        "cost_per_customer_hi": 21.972426,
+        "sample": "development, out-of-fold"
+      },
+      {
+        "group": "on hardship plan",
+        "n": 2719,
+        "positives": 452,
+        "observed_rate": 0.166238,
+        "mean_predicted": 0.166189,
+        "called_share": 0.541376,
+        "auc": 0.812976,
+        "auc_lo": 0.791976,
+        "auc_hi": 0.832577,
+        "auprc": 0.45886,
+        "auprc_lo": 0.413931,
+        "auprc_hi": 0.508738,
+        "brier": 0.111685,
+        "brier_lo": 0.10442,
+        "brier_hi": 0.119477,
+        "recall": 0.891593,
+        "recall_lo": 0.863303,
+        "recall_hi": 0.919913,
+        "precision": 0.273777,
+        "precision_lo": 0.251167,
+        "precision_hi": 0.296381,
+        "cost_per_customer": 30.665686,
+        "cost_per_customer_lo": 28.098198,
+        "cost_per_customer_hi": 33.14509,
+        "sample": "development, out-of-fold"
+      }
+    ],
+    "members_share_of_customers_test": 0.136,
+    "members_share_of_calls_test": 0.244737
+  },
+  "shap": {
+    "base_value_log_odds": -3.058589,
+    "importance": {
+      "Bills paid late": 0.4893,
+      "Income tier": 0.3642,
+      "Average days overdue": 0.2822,
+      "How bills are paid": 0.2028,
+      "Hardship plan": 0.0906,
+      "Home type": 0.0906,
+      "Share of amount due left unpaid": 0.0617,
+      "Average bill": 0.0546,
+      "District": 0.0368,
+      "E-billing": 0.0233,
+      "Occupants": 0.0222,
+      "Tenure": 0.0212
+    },
+    "top3": [
+      "Bills paid late",
+      "Income tier",
+      "Average days overdue"
+    ],
+    "max_additivity_error": 0.0
+  },
+  "runtime_seconds": 83.4
+}

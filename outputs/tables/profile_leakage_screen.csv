@@ -1,0 +1,10 @@
+field,recorded,single_field_auc,missing_share
+shutoff_notices,day of extract (end of cycle 18),0.9955,0.0
+status_at_pull,day of extract (end of cycle 18),0.9397,0.0
+income_tier,"estimated, date not given",0.7318,0.0875
+hardship_plan,end of cycle 12,0.5592,0.0
+home_type,static,0.5495,0.0
+district,static,0.5273,0.0
+occupants,at sign-up,0.5199,0.0
+tenure_cycles,end of cycle 12,0.5096,0.0
+ebill,not stated,0.504,0.0
